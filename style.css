@@ -11,10 +11,12 @@ Body {
     font-size: 50px;
     cursor: pointer;
 }
+
 #gameContainer{
     font-family:'Times New Roman', Times, serif;
     text-align: center;
 }
+
 #cellContainer{
     display: grid;
     grid-template-columns: repeat(3, auto);
