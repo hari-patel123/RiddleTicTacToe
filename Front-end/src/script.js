@@ -1,3 +1,10 @@
+// Mock database of riddles
+const riddles = [
+    { question: "What has keys but can't open locks?", answer: "A piano" },
+    { question: "What can travel around the world while staying in a corner?", answer: "A stamp" },
+    { question: "What has a head, a tail, is brown, and has no legs?", answer: "A penny" }
+];
+
 const cells = document.querySelectorAll(".cell");
 const statusText = document.querySelector("#statusText");
 const restartBtn = document.querySelector("#restartBtn");
@@ -25,14 +32,33 @@ function initializeGame() {
 }
 
 function cellClicked() {
+    console.log("Cell clicked");
+
     const cellIndex = this.getAttribute("cellIndex");
 
-    if(options[cellIndex] != "" || !running){
+    if (options[cellIndex] != "" || !running) {
         return;
     }
 
-    updateCell(this, cellIndex);
-    checkWinner();
+    // Fetch a random riddle
+    const riddleIndex = Math.floor(Math.random() * riddles.length);
+    const riddle = riddles[riddleIndex];
+    console.log("Riddle:", riddle);
+
+    // Display the riddle question
+    document.getElementById("riddleQuestion").textContent = riddle.question;
+    console.log("Riddle question displayed:", riddle.question);
+
+    // Prompt the player to solve the riddle
+    const answer = prompt(riddle.question);
+
+    // Validate the player's answer
+    if (answer && answer.trim().toLowerCase() === riddle.answer.toLowerCase()) {
+        updateCell(this, cellIndex);
+        checkWinner();
+    } else {
+        alert("Incorrect answer! You must solve the riddle to make a move.");
+    }
 }
 
 function updateCell(cell, index) {
@@ -80,14 +106,3 @@ function restartGame() {
     cells.forEach(cell => cell.textContent = "");
     running = true;
 }
-
-// riddle functionality
-const riddleQuestion = document.getElementById("riddleQuestiom");
-
-// display riddle question from database
-
-// player must answer riddle before clicking x or o
-
-// check if riddle answer is correct, display message to user
-
-// if incorrect switch players, 
