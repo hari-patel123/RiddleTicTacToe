@@ -1,8 +1,16 @@
-// Mock database of riddles
-const riddles = [
-    { question: "What has keys but can't open locks?", answer: "A piano" },
-    { question: "What can travel around the world while staying in a corner?", answer: "A stamp" },
-    { question: "What has a head, a tail, is brown, and has no legs?", answer: "A penny" }
+const questionsAndAnswers = [
+    {
+        question: "What has keys but can't open locks?",
+        answer: "A piano"
+    },
+    {
+        question: "What can travel around the world while staying in a corner?",
+        answer: "A stamp"
+    },
+    {
+        question: "What has a head, a tail, is brown, and has no legs?",
+        answer: "A penny"
+    }
 ];
 
 const cells = document.querySelectorAll(".cell");
@@ -40,20 +48,19 @@ function cellClicked() {
         return;
     }
 
-    // Fetch a random riddle
-    const riddleIndex = Math.floor(Math.random() * riddles.length);
-    const riddle = riddles[riddleIndex];
-    console.log("Riddle:", riddle);
-
-    // Display the riddle question
-    document.getElementById("riddleQuestion").textContent = riddle.question;
-    console.log("Riddle question displayed:", riddle.question);
+    // Fetch a random question from questionsAndAnswers
+    const questionIndex = Math.floor(Math.random() * questionsAndAnswers.length);
+    const { question, answer } = questionsAndAnswers[questionIndex];
 
     // Prompt the player to solve the riddle
-    const answer = prompt(riddle.question);
+    const playerAnswer = prompt(question);
+
+    // Log player's answer to check
+    console.log("Player's answer:", playerAnswer);
 
     // Validate the player's answer
-    if (answer && answer.trim().toLowerCase() === riddle.answer.toLowerCase()) {
+    if (playerAnswer && playerAnswer.trim().toLowerCase() === answer.toLowerCase()) {
+        // Call updateCell with the clicked cell and its index
         updateCell(this, cellIndex);
         checkWinner();
     } else {
@@ -106,4 +113,4 @@ function restartGame() {
     cells.forEach(cell => cell.textContent = "");
     running = true;
 }
- 
+
