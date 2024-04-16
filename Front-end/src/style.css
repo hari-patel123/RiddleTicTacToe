@@ -1,20 +1,24 @@
 body {
-    background-color: pink;
+    background-color: black;
 }
 
 .cell{
     width: 75px;
     height: 75px;
     border: 2px solid;
-    box-shadow: 0 0 0 2px;
+    box-shadow: 0 0 10px 5px blue;
     line-height: 75px;
     font-size: 50px;
     cursor: pointer;
+    color: red;
+    text-shadow: 0 0 10px red;
 }
 
 #gameContainer{
     font-family:'Times New Roman', Times, serif;
     text-align: center;
+    color: green;
+    text-shadow: 0 0 20px  limegreen;
 }
 
 #cellContainer{
@@ -22,4 +26,16 @@ body {
     grid-template-columns: repeat(3, auto);
     width: 225px;
     margin: auto;
+}
+
+button{
+    background-color: yellow;
+    color: black;
+    padding: 10px 10px;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 10px;
+    border-color: yellow;
+    box-shadow: 0 0 10px 5px yellow;
 }
